@@ -17,14 +17,17 @@ function handleClick(state) {
 }
 
 tabs.on('ready', function(tab) {
-  if (tab.url.startsWith('www.google.com') || tab.url.startsWith('https://www.google.com') || tab.url.startsWith('http://www.google.com')) {
-    if (tab.url.indexOf('/search?' > -1)) {
-      var search = tab.url.slice(tab.url.indexOf('?q'));
+  var taburl = tab.url
+  if ((taburl.startsWith('www.google.com') || taburl.startsWith('https://www.google.com')) || taburl.startsWith('http://www.google.com')) {
+    if (taburl.indexOf('/search?') != -1) {
+      var search = taburl.slice(taburl.indexOf('?q'));
+      console.log('Redirecting...')
+      tab.url = 'https://duckduckgo.com/' + search;
     }
     else {
-      var search = ''
+      console.log('Not going to redirect.');
     }
-//    console.log('Opening ddg...');
-    tab.url = 'https://duckduckgo.com/' + search;
+    console.log(taburl);
+    
   }
-})
+});
