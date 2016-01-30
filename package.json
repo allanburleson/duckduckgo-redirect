@@ -1,0 +1,15 @@
+{
+  "title": "Redirect to DuckDuckGo",
+  "name": "ddgredir",
+  "version": "0.0.1",
+  "description": "Redirects Google searches to DuckDuckGo",
+  "main": "index.js",
+  "author": "disorientedperson",
+  "engines": {
+    "firefox": ">=38.0a1"
+  },
+  "license": "GPL",
+  "keywords": [
+    "jetpack"
+  ]
+}
