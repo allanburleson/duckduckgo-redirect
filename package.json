@@ -1,7 +1,7 @@
 {
   "title": "Redirect to DuckDuckGo",
   "name": "ddgredir",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Redirects Google searches to DuckDuckGo",
   "main": "index.js",
   "author": "disorientedperson",
@@ -30,6 +30,12 @@
     "title": "Enable Yahoo redirect",
     "type": "bool",
     "value": true
-  }]
+  },
+  {
+    "name": "yahomeredir",
+    "title": "Redirect from Yahoo.com homepage",
+    "type": "bool",
+    "value": false
+    }]
   
 }

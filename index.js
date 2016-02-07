@@ -19,7 +19,12 @@ function listener(event) {
     }
   }
   if(require("sdk/simple-prefs").prefs['yahooredir']) {
-    if (firstURL.match(/^https?:\/\/search\.yahoo\.com/)) {
+    if (require("sdk/simple-prefs").prefs['yahomeredir']) {
+      if (firstURL.match(/^https?:\/\/w?w?w?\.?yahoo\.com/)) {
+        var searchre = /[\?#&]p=[a-z\+%0-9@\/-;\.<>,\(\)]*/i;
+      }
+    }
+    else if (firstURL.match(/^https?:\/\/w?w?w?\.?search\.yahoo\.com/)) {
       var searchre = /[\?#&]p=[a-z\+%0-9@\/-;\.<>,\(\)]*/i;
     }
   }
