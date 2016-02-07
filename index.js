@@ -8,23 +8,29 @@ function listener(event) {
   var replace = false;
   var firstURL = event.subject.URI.spec;
   // Find what search engine is being used (if any) and change regex
-  if(firstURL.match(/^https*:\/\/www\.google\.com/)) { 
-    var searchre = /[\?#&]q=[a-z\+%0-9@\/-;\.<>,\(\)]*/i;
+  if (require("sdk/simple-prefs").prefs['googleredir']) {
+    if(firstURL.match(/^https?:\/\/www\.google\.com/)) { 
+        var searchre = /[\?#&]q=[a-z\+%0-9@\/-;\.<>,\(\)]*/i;
+    }
   }
-  else if (firstURL.match(/^https*:\/\/www\.bing\.com/)) {
-    var searchre = /[\?#&]q=[a-z\+%0-9@\/-;\.<>,\(\)]*/i;
+  if (require("sdk/simple-prefs").prefs['bingredir']) {
+    if (firstURL.match(/^https?:\/\/www\.bing\.com/)) {
+      var searchre = /[\?#&]q=[a-z\+%0-9@\/-;\.<>,\(\)]*/i;
+    }
   }
-  else if (firstURL.match(/^https*:\/\/search\.yahoo\.com/)) {
-    var searchre = /[\?#&]p=[a-z\+%0-9@\/-;\.<>,\(\)]*/i;
+  if(require("sdk/simple-prefs").prefs['yahooredir']) {
+    if (firstURL.match(/^https?:\/\/search\.yahoo\.com/)) {
+      var searchre = /[\?#&]p=[a-z\+%0-9@\/-;\.<>,\(\)]*/i;
+    }
   }
   else {
-    searchre = null;
+    var searchre = null;
   }
   if (searchre != null) {
     // If the variable contains a regex
     var ioService = chrome.Cc["@mozilla.org/network/io-service;1"].getService(chrome.Ci.nsIIOService);
     var newURL = 'https://duckduckgo.com';
-    if (firstURL.indexOf('/search?') != -1) {
+    if (firstURL.indexOf('/search') != -1) {
       
       var search = firstURL.slice(firstURL.indexOf('.com/') + 4);
       if (searchre.test(search)) {

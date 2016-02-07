@@ -11,5 +11,25 @@
   "license": "GPL",
   "keywords": [
     "duckduckgo", "google"
-  ]
+  ],
+  
+  "preferences": [{
+    "name": "googleredir",
+    "title": "Enable Google redirect",
+    "type": "bool",
+    "value": true
+  },
+  {
+    "name": "bingredir",
+    "title": "Enable Bing redirect",
+    "type": "bool",
+    "value": true
+  },
+  { 
+    "name": "yahooredir",
+    "title": "Enable Yahoo redirect",
+    "type": "bool",
+    "value": true
+  }]
+  
 }
