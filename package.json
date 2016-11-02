@@ -1,7 +1,7 @@
 {
   "title": "Redirect to DuckDuckGo",
   "name": "ddgredir",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "description": "Redirects Google searches to DuckDuckGo",
   "main": "main.js",
   "author": "disorientedperson",
