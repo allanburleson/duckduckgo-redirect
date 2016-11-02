@@ -4,4 +4,4 @@ You can find the Firefox Add-on page [here](https://addons.mozilla.org/en-US/fir
 
 TODO:
 - [ ] Fix for WebExtensions
-- [ ] Fix Google widgets (calendar, etc.) turning into DuckDuckGo search bars
+- [x] Fix Google widgets (calendar, etc.) turning into DuckDuckGo search bars
