@@ -8,22 +8,22 @@ function listener(event) {
   // Find what search engine is being used (if any) and change regex
   if (require("sdk/simple-prefs").prefs['googleredir']) {
     if(firstURL.match(/^https?:\/\/www\.google\.com(\/?$)|(\/(search)?[#?]q=)/)) {
-        var searchre = /[\?#&]q=.*/i;
+        var searchre = /[\?#&]q=[a-z\+%0-9@\/-;\.<>,\(\)]*/i;
     }
   }
   if (require("sdk/simple-prefs").prefs['bingredir']) {
     if (firstURL.match(/^https?:\/\/www\.bing\.com/)) {
-      var searchre = /[\?#&]q=.*/i;
+      var searchre = /[\?#&]q=[a-z\+%0-9@\/-;\.<>,\(\)]*/i;
     }
   }
   if(require("sdk/simple-prefs").prefs['yahooredir']) {
     if (require("sdk/simple-prefs").prefs['yahomeredir']) {
       if (firstURL.match(/^https?:\/\/w?w?w?\.?yahoo\.com/)) {
-        var searchre = /[\?#&]p=.*/i;
+        var searchre = /[\?#&]p=[a-z\+%0-9@\/-;\.<>,\(\)]*/i;
       }
     }
     else if (firstURL.match(/^https?:\/\/w?w?w?\.?search\.yahoo\.com/)) {
-      var searchre = /[\?#&]p=.*/i;
+      var searchre = /[\?#&]p=[a-z\+%0-9@\/-;\.<>,\(\)]*/i;
     }
   }
   else {
