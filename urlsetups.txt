@@ -1,3 +1,0 @@
-google: "/search?q=[query]" or "/?blahblah=blahblah&q=[query]"
-yahoo:  "search.yahoo.com/yhs/search?p=[query]"
-bing:   "/search?q=[query]"
