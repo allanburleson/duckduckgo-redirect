@@ -7,7 +7,7 @@ function listener(event) {
   var firstURL = event.subject.URI.spec;
   // Find what search engine is being used (if any) and change regex
   if (require("sdk/simple-prefs").prefs['googleredir']) {
-    if(firstURL.match(/^https?:\/\/www\.google\.com(\/?$)|(\/(search)?[#?]q=)/)) {
+      if(firstURL.match(/^https?:\/\/www\.google\.com\/[#?]q=/) || firstURL.match(/google.com\/?$/)) {
         var searchre = /[\?#&]q=[a-z\+%0-9@\/-;\.<>,\(\)]*/i;
     }
   }
