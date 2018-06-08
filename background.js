@@ -26,12 +26,12 @@ function get_query(url) {
 function redirect(details) {
   var url = details.url;
   var query = get_query(url);
-  var newurl = 'https://duckduckgo.com/?q=' + query;
-  console.log(url + ' => ' + newurl);
-  // Changes URL to newurl
-  // Current problems with opening search in new tab
-  var updating = browser.tabs.update({url: newurl});
-  
+  if (query) {
+    var newurl = 'https://duckduckgo.com/?q=' + query;
+    console.log(url + ' => ' + newurl);
+    // Changes URL of tab
+    var updating = browser.tabs.update(details.tabId, {url: newurl});
+  }
 };
 
 browser.webNavigation.onBeforeNavigate.addListener(redirect, filter);
