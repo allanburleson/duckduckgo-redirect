@@ -1,0 +1,15 @@
+{
+    "manifest_version": 2,
+    "name": "Redirect to DuckDuckGo",
+    "version": "2.0",
+    "description": "Redirects Google searches to DuckDuckGo",
+    "icons": {
+        "64": "icon.png"
+    },
+    "background": {
+        "scripts": ["background.js"]
+    },
+    "permissions": [
+        "webNavigation"
+    ]
+}
