@@ -28,7 +28,7 @@ function redirect(details) {
   var query = get_query(url);
   if (query) {
     var newurl = 'https://duckduckgo.com/?q=' + query;
-    console.log(url + ' => ' + newurl);
+    // console.log(url + ' => ' + newurl);
     // Changes URL of tab
     var updating = browser.tabs.update(details.tabId, {url: newurl});
   }
