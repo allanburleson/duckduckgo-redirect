@@ -1,36 +1,35 @@
 var filter = {
   url:
   [
-    {hostContains: 'google.com'},
-    {hostContains: 'bing.com'},
-    {hostContains: 'yahoo.com'}
+    {hostContains: "google.com"},
+    {hostContains: "bing.com"},
+    {hostContains: "yahoo.com"}
   ]
 };
 
-function get_query(url) {
-  // Finds search query in url
-  // 1st capture group contains only query itself
-  if (url.includes('search.yahoo.com')) {
-    var re = /[\?#&]p=([^&?#]+)/i;
+function get_search_query(addr) {
+  if (addr.hostname == "search.yahoo.com") {
+    var query = addr.searchParams.get("p");
   } else {
-    var re = /[\?#&]q=([^&?#]+)/i;
+    var query = addr.searchParams.get("q");
   }
-  var match = url.match(re);
-  if (match) {
-    return match[1];
-  } else {
-    return null;
-  }
+  console.log(query);
+  return query;
 };
 
 function redirect(details) {
-  var url = details.url;
-  var query = get_query(url);
+  var addr = new URL(details.url);
+  var query = get_search_query(addr);
+  var new_addr;
+  if (addr.hostname == "www.google.com" && addr.pathname == "/url") {
+    new_addr = query;
+  }
   if (query) {
-    var newurl = 'https://duckduckgo.com/?q=' + query;
-    // console.log(url + ' => ' + newurl);
-    // Changes URL of tab
-    var updating = browser.tabs.update(details.tabId, {url: newurl});
+    if (!new_addr) {
+      var new_addr = "https://duckduckgo.com/?q=" + query;
+      console.log(addr.href + " => " + ddg_addr);
+    }
+    var updating = browser.tabs.update(details.tabId, {url: new_addr});
   }
 };
 
