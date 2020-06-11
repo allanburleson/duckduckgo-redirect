@@ -13,7 +13,6 @@ function get_search_query(addr) {
   } else {
     var query = addr.searchParams.get("q");
   }
-  console.log(query);
   return query;
 };
 
@@ -27,7 +26,6 @@ function redirect(details) {
   if (query) {
     if (!new_addr) {
       var new_addr = "https://duckduckgo.com/?q=" + query;
-      console.log(addr.href + " => " + ddg_addr);
     }
     var updating = browser.tabs.update(details.tabId, {url: new_addr});
   }
