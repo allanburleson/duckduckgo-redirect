@@ -15,26 +15,41 @@ const known = {
 };
 
 function get_search_query(addr) {
-  if (addr.hostname == "search.yahoo.com") {
-    var query = addr.searchParams.get("p");
-  } else {
-    var query = addr.searchParams.get("q");
+  // Looks like: "www.google.com/search"
+  const addrBase = `${addr.hostname}${addr.pathname}`;
+
+  for (let searchProvider in known) {
+    const search = known[searchProvider];
+
+    // The enabled status is updated in real time through storage change events
+    if (!search.enabled) {
+      return;
+    }
+
+    const regex = new RegExp(search.regex);
+
+    if (regex.test(addrBase)) {
+      // If search provider is enabled and matches, let's return the parameter from query string
+      return addr.searchParams.get(search.param);
+    }
   }
-  return query;
+
+  // No matches? Return null
+  return null;
 };
 
 function redirect(details) {
-  var addr = new URL(details.url);
-  var query = get_search_query(addr);
-  var new_addr;
-  if (addr.hostname == "www.google.com" && addr.pathname == "/url") {
-    new_addr = query;
+  // Only redirect in top level contexts
+  if (details.parentFrameId !== -1 || details.frameId !== 0) {
+    return;
   }
+
+  // Check for search engines
+  const addr = new URL(details.url);
+  const query = get_search_query(addr);
+
   if (query) {
-    if (!new_addr) {
-      var new_addr = "https://duckduckgo.com/?q=" + query;
-    }
-    var updating = browser.tabs.update(details.tabId, {url: new_addr});
+    browser.tabs.update(details.tabId, {url: `https://duckduckgo.com/?q=${encodeURIComponent(query)}`});
   }
 };
 
