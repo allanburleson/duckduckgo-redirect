@@ -1,9 +1,10 @@
-var filter = {
+// Strict filters make it easy to not accidentally run on unwanted code
+const filter = {
   url:
   [
-    {hostContains: "google.com"},
-    {hostContains: "bing.com"},
-    {hostContains: "yahoo.com"}
+    {hostEquals: "www.google.com", pathPrefix: "/search"},
+    {hostEquals: "www.bing.com", pathPrefix: "/search"},
+    {hostSuffix: "search.yahoo.com", pathPrefix: "/search"}
   ]
 };
 
