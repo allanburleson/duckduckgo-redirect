@@ -10,6 +10,12 @@
         "scripts": ["background.js"]
     },
     "permissions": [
-        "webNavigation"
-    ]
+        "webNavigation",
+        "storage"
+    ],
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "duckduckgo-redirect@allanburleson"
+        }
+    }
 }

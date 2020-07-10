@@ -7,6 +7,12 @@ var filter = {
   ]
 };
 
+const known = {
+  Google: {regex: "^www.google.com/search$", param: "q", enabled: true},
+  Yahoo: {regex: "search.yahoo.com/search$", param: "p", enabled: true},
+  Bing: {regex: "^www.bing.com/search$", param: "q", enabled: true},
+};
+
 function get_search_query(addr) {
   if (addr.hostname == "search.yahoo.com") {
     var query = addr.searchParams.get("p");
@@ -32,3 +38,30 @@ function redirect(details) {
 };
 
 browser.webNavigation.onBeforeNavigate.addListener(redirect, filter);
+
+function on_storage_change(changes, area) {
+  if (area === 'sync' && changes.known) {
+    for (let key in changes.known.newValue) {
+      known[key].enabled = changes.known.newValue[key];
+    }
+  }
+}
+
+// Bind known-object to storage
+browser.storage.sync.get('known').then(res => {
+  if (res.known) {
+    for (let key in res.known) {
+      known[key].enabled = res.known[key];
+    }
+  } else {
+    // Initialize if property was not set
+    const providers = {};
+    for (let key in known) {
+      providers[key] = known[key].enabled;
+    }
+
+    browser.storage.sync.set({known: providers});
+  }
+
+  browser.storage.onChanged.addListener(on_storage_change);
+});
