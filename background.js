@@ -56,7 +56,7 @@ function redirect(details) {
 browser.webNavigation.onBeforeNavigate.addListener(redirect, filter);
 
 function on_storage_change(changes, area) {
-  if (area === 'sync' && changes.known) {
+  if (area === "sync" && changes.known) {
     for (let key in changes.known.newValue) {
       known[key].enabled = changes.known.newValue[key];
     }
@@ -64,7 +64,7 @@ function on_storage_change(changes, area) {
 }
 
 // Bind known-object to storage
-browser.storage.sync.get('known').then(res => {
+browser.storage.sync.get("known").then(res => {
   if (res.known) {
     for (let key in res.known) {
       known[key].enabled = res.known[key];
