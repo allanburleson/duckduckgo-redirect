@@ -1,0 +1,49 @@
+html, body {
+	font-size: 16px;
+	background: #444;
+	color: #eee;
+	width: 100%;
+}
+
+#popup {
+	margin: 1rem;
+}
+
+header {
+	display: flex;
+}
+
+h1 {
+	font-size: 1.5rem;
+	margin: 0;
+	margin-left: 1rem;
+	width: min-content;
+	color: #eee;
+	flex: 1 1 auto;
+}
+
+h2 {
+	font-size: 1rem;
+	margin: 0;
+	margin-bottom: 1rem;
+	color: #eee;
+}
+
+img {
+	margin: 0 auto;
+	flex: 0 1 4rem;
+}
+
+hr {
+	margin: 1rem 0;
+	border-color: #777;
+}
+
+#engines label {
+	display: block;
+	color: #eee;
+}
+
+#engines label:hover {
+	background: #333;
+}
