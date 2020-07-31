@@ -10,6 +10,16 @@
         "scripts": ["background.js"]
     },
     "permissions": [
-        "webNavigation"
-    ]
+        "webNavigation",
+        "storage"
+    ],
+    "options_ui": {
+	"page": "prefs/prefs.html",
+        "browser_style": true
+    },
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "duckduckgo-redirect@allanburleson"
+        }
+    }
 }

@@ -1,0 +1,35 @@
+html, body {
+	font-size: 16px;
+	width: 100%;
+}
+
+header {
+	display: flex;
+}
+
+h1 {
+	font-size: 1.5rem;
+	margin: 0;
+	margin-left: 1rem;
+	width: min-content;
+	flex: 1 1 auto;
+}
+
+h2 {
+	font-size: 1rem;
+	margin: 0;
+	margin-bottom: 1rem;
+}
+
+img {
+	margin: 0 auto;
+	flex: 0 1 4rem;
+}
+
+#engines label {
+	display: block;
+}
+
+#engines label:hover {
+	background: #ccc;
+}
