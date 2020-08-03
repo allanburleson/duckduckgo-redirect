@@ -23,7 +23,7 @@ function get_search_query(addr) {
 
     // The enabled status is updated in real time through storage change events
     if (!search.enabled) {
-      return;
+      continue;
     }
 
     const regex = new RegExp(search.regex);
