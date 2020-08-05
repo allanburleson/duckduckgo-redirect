@@ -18,8 +18,8 @@
         "browser_style": true
     },
     "browser_specific_settings": {
-        "gecko": {
-            "id": "duckduckgo-redirect@allanburleson"
-        }
+	"gecko": {
+	    "id": "@ddgredir"
+	}
     }
 }

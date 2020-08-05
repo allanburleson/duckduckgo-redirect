@@ -1,4 +1,4 @@
-// Strict filters make it easy to not accidentally run on unwanted code
+// Strict filters avoid accidental triggers
 const filter = {
   url:
   [
@@ -15,7 +15,7 @@ const known = {
 };
 
 function get_search_query(addr) {
-  // Looks like: "www.google.com/search"
+  // Looks like "www.google.com/search"
   const addrBase = `${addr.hostname}${addr.pathname}`;
 
   for (let searchProvider in known) {
@@ -29,12 +29,12 @@ function get_search_query(addr) {
     const regex = new RegExp(search.regex);
 
     if (regex.test(addrBase)) {
-      // If search provider is enabled and matches, let's return the parameter from query string
+      // If search provider is enabled and matches, return the query string from respective parameter
       return addr.searchParams.get(search.param);
     }
   }
 
-  // No matches? Return null
+  // null if no matches
   return null;
 };
 

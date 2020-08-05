@@ -16,7 +16,7 @@ function on_storage_change(changes, area) {
 
 browser.storage.sync.get("known").then(res => {
   if (res.known) {
-    // Populate popup dialog with providers and their enabled states
+    // Populate engines list with providers and their states
     const root = document.getElementById("engines");
 
     known = res.known;
@@ -41,3 +41,4 @@ browser.storage.sync.get("known").then(res => {
 });
 
 browser.storage.onChanged.addListener(on_storage_change);
+
