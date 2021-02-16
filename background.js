@@ -10,10 +10,10 @@ const filter = {
 };
 
 const known = {
-  Google: {regex: "^www.google.com/search$", param: "q", enabled: true},
-  Yahoo: {regex: "search.yahoo.com/search$", param: "p", enabled: true},
-  Bing: {regex: "^www.bing.com/search$", param: "q", enabled: true},
-  BingVS: {regex: "^bingdev.cloudapp.net/BingUrl.svc/Get$", param: "errorCode", enabled: true},
+  Google: {regex: "^www.google.com/search$", params: ["q"], enabled: true},
+  Bing: {regex: "^www.bing.com/search$", params: ["q"], enabled: true},
+  BingVS: {regex: "^bingdev.cloudapp.net/BingUrl.svc/Get$", params: ["mainLanguage", "errorCode"], enabled: true},
+  Yahoo: {regex: "search.yahoo.com/search$", params: ["p"], enabled: true},
 };
 
 function get_search_query(addr) {
@@ -31,8 +31,8 @@ function get_search_query(addr) {
     const regex = new RegExp(search.regex);
 
     if (regex.test(addrBase)) {
-      // If search provider is enabled and matches, return the query string from respective parameter
-      return addr.searchParams.get(search.param);
+      // If search provider is enabled and matches, return the query string comprising space-separated parameters
+      return search.params.map(x => addr.searchParams.get(x)).join(" ");
     }
   }
 
