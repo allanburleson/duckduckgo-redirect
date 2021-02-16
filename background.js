@@ -4,6 +4,7 @@ const filter = {
   [
     {hostEquals: "www.google.com", pathPrefix: "/search"},
     {hostEquals: "www.bing.com", pathPrefix: "/search"},
+    {hostEquals: "bingdev.cloudapp.net", pathPrefix: "/BingUrl.svc/Get"},
     {hostSuffix: "search.yahoo.com", pathPrefix: "/search"}
   ]
 };
@@ -12,6 +13,7 @@ const known = {
   Google: {regex: "^www.google.com/search$", param: "q", enabled: true},
   Yahoo: {regex: "search.yahoo.com/search$", param: "p", enabled: true},
   Bing: {regex: "^www.bing.com/search$", param: "q", enabled: true},
+  BingVS: {regex: "^bingdev.cloudapp.net/BingUrl.svc/Get$", param: "errorCode", enabled: true},
 };
 
 function get_search_query(addr) {
