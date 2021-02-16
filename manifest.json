@@ -10,7 +10,11 @@
         "scripts": ["background.js"]
     },
     "permissions": [
-        "webNavigation",
+        "*://www.google.com/search*",
+        "*://www.bing.com/search*",
+        "*://search.yahoo.com/search*",
+        "webRequest",
+        "webRequestBlocking",
         "storage"
     ],
     "options_ui": {

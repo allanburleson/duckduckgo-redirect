@@ -1,18 +1,6 @@
-// Strict filters avoid accidental triggers
-const filter = {
-  url:
-  [
-    {hostEquals: "www.google.com", pathPrefix: "/search"},
-    {hostEquals: "www.bing.com", pathPrefix: "/search"},
-    {hostEquals: "bingdev.cloudapp.net", pathPrefix: "/BingUrl.svc/Get"},
-    {hostSuffix: "search.yahoo.com", pathPrefix: "/search"}
-  ]
-};
-
 const known = {
   Google: {regex: "^www.google.com/search$", params: ["q"], enabled: true},
   Bing: {regex: "^www.bing.com/search$", params: ["q"], enabled: true},
-  BingVS: {regex: "^bingdev.cloudapp.net/BingUrl.svc/Get$", params: ["mainLanguage", "errorCode"], enabled: true},
   Yahoo: {regex: "search.yahoo.com/search$", params: ["p"], enabled: true},
 };
 
@@ -32,7 +20,7 @@ function get_search_query(addr) {
 
     if (regex.test(addrBase)) {
       // If search provider is enabled and matches, return the query string comprising space-separated parameters
-      return search.params.map(x => addr.searchParams.get(x)).join(" ");
+      return search.params.map(param => addr.searchParams.get(param)).join(" ");
     }
   }
 
@@ -51,11 +39,13 @@ function redirect(details) {
   const query = get_search_query(addr);
 
   if (query) {
-    browser.tabs.update(details.tabId, {url: `https://duckduckgo.com/?q=${encodeURIComponent(query)}`});
+    return {
+        redirectUrl: `https://duckduckgo.com/?q=${encodeURIComponent(query)}`
+    }
   }
 };
 
-browser.webNavigation.onBeforeNavigate.addListener(redirect, filter);
+browser.webRequest.onBeforeRequest.addListener(redirect, {urls: ["<all_urls>"]}, ["blocking"]);
 
 function on_storage_change(changes, area) {
   if (area === "sync" && changes.known) {
