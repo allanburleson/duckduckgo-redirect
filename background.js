@@ -1,7 +1,7 @@
 const known = {
   Google: {regex: "^www.google.com/search$", params: ["q"], enabled: true},
   Bing: {regex: "^www.bing.com/search$", params: ["q"], enabled: true},
-  Yahoo: {regex: "search.yahoo.com/search$", params: ["p"], enabled: true},
+  Yahoo: {regex: "search.yahoo.com/search$", params: ["p"], enabled: true}
 };
 
 function get_search_query(addr) {
