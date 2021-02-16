@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Redirect to DuckDuckGo",
-    "version": "2.2",
+    "version": "2.3",
     "description": "Redirects Google searches to DuckDuckGo",
     "icons": {
         "64": "icon.png"
