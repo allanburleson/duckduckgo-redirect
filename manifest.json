@@ -7,7 +7,10 @@
         "64": "icon.png"
     },
     "background": {
-        "scripts": ["background.js"]
+        "scripts": [
+            "browser-polyfill.js",
+            "background.js"
+        ]
     },
     "permissions": [
         "*://www.google.com/search*",
@@ -19,12 +22,6 @@
         "storage"
     ],
     "options_ui": {
-	"page": "prefs/prefs.html",
-        "browser_style": true
-    },
-    "browser_specific_settings": {
-	"gecko": {
-	    "id": "@ddgredir"
-	}
+	"page": "prefs/prefs.html"
     }
 }
