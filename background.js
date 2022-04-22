@@ -37,11 +37,16 @@ function redirect(details) {
 
   // Check for search engines
   const addr = new URL(details.url);
-  const query = get_search_query(addr);
+  // Avoid other Google services like Maps
+  // This solution is inelegant. In the future maybe add alternatives for
+  // other Google search services?
+  if (!addr.searchParams.get("tbm")) {
+    const query = get_search_query(addr);
 
-  if (query) {
-    return {
-        redirectUrl: `https://duckduckgo.com/?q=${encodeURIComponent(query)}`
+    if (query) {
+      return {
+          redirectUrl: `https://duckduckgo.com/?q=${encodeURIComponent(query)}`
+      }
     }
   }
 };
